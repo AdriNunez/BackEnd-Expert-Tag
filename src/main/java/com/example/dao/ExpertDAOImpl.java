@@ -59,12 +59,12 @@ public class ExpertDAOImpl implements ExpertDAO{
         CriteriaBuilder builder = manager.getCriteriaBuilder();
         CriteriaQuery<Expert> criteria = builder.createQuery(Expert.class);
         Root<Expert> root = criteria.from(Expert.class);
-        criteria.select(root);
-        criteria.where(builder.equal(root.get("nombre"),nombre));
+      // criteria.select(root);
+        criteria.where(builder.like(root.get("nombre"),"%"+nombre+"%"));
 
         Query query = manager.createQuery(criteria);
-        query.setFirstResult(limite);
-        query.setMaxResults(pagina);
+  //     query.setFirstResult(limite);
+       query.setMaxResults(pagina);
         return query.getResultList();
 
     }
