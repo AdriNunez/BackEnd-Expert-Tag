@@ -30,10 +30,13 @@ public class TagController {
     @GetMapping("/etiquetas")
     public List<Tag> retrieveByFilter(@RequestParam(name="limite", required=false, defaultValue = "5") Integer limite,
                                          @RequestParam(name="pagina", required=false, defaultValue = "2") Integer pagina,
-                                         @RequestParam(name="nombre", required=false) String nombre){
+                                         @RequestParam(name="nombre", required=false) String nombre ,
+                                        @RequestParam(name="creador",required =false) String creador){
 
         if(nombre!= null) {
             return tagService.retrieveAllByNombre(nombre, limite, pagina);
+        } else if(creador != null){
+            return tagService.retrieveTagsByExpert(creador,limite,pagina);
         }
         else{
             return tagService.retrieveAllTags();

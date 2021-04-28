@@ -7,9 +7,9 @@
 
 
 
-    insert into tag(nombre,created_at,updated_at) values ("Java","2021-04-06 08:22:59","2021-04-06 08:22:59");
-    insert into tag(nombre,created_at,updated_at) values ("Kubernates","2021-04-06 08:22:59","2021-04-06 08:22:59");
-    insert into tag(nombre,created_at,updated_at) values ("Jasdfasf","2021-04-06 08:22:59","2021-04-06 08:22:59");
-    insert into tag(nombre,created_at,updated_at) values ("0000","2021-04-06 08:22:59","2021-04-06 08:22:59");
-    insert into tag(nombre,created_at,updated_at) values ("123123","2021-04-06 08:22:59","2021-04-06 08:22:59");
+    insert into tag(nombre,created_at,updated_at,creador) values ("Java","2021-04-06 08:22:59","2021-04-06 08:22:59","José Miguel Fernández");
+    insert into tag(nombre,created_at,updated_at,creador) values ("Kubernates","2021-04-06 08:22:59","2021-04-06 08:22:59","Alfonso Pérez");
+    insert into tag(nombre,created_at,updated_at,creador) values ("Jasdfasf","2021-04-06 08:22:59","2021-04-06 08:22:59","Berta Tomillo");
+    insert into tag(nombre,created_at,updated_at,creador) values ("0000","2021-04-06 08:22:59","2021-04-06 08:22:59","Marta Núñez");
+    insert into tag(nombre,created_at,updated_at,creador) values ("123123","2021-04-06 08:22:59","2021-04-06 08:22:59","Berta Tomillo");
 

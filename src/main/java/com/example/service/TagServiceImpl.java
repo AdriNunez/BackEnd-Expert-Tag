@@ -31,4 +31,7 @@ public class TagServiceImpl implements TagService{
 
     @Override
     public List<Tag> retrieveAllByNombre(String nombre, Integer limite, Integer pagina){return tagDAO.retrieveAllByNombre(nombre,limite,pagina);};
+
+    @Override
+    public List<Tag> retrieveTagsByExpert(String creador, Integer limite, Integer pagina){return tagDAO.retrieveTagsByExpert(creador,limite,pagina);};
 }

@@ -19,4 +19,5 @@ public interface TagDAO {
 
     public List<Tag> retrieveAllByNombre(String nombre, Integer limite, Integer pagina);
 
+    public List<Tag> retrieveTagsByExpert(String nombre, Integer limite, Integer pagina);
 }

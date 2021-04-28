@@ -64,4 +64,19 @@ public class TagDAOImpl implements TagDAO {
 
     }
 
+    @Override
+    public List<Tag> retrieveTagsByExpert(String creador, Integer limite, Integer pagina){
+
+        CriteriaBuilder builder = manager.getCriteriaBuilder();
+        CriteriaQuery<Tag> criteria = builder.createQuery(Tag.class);
+        Root<Tag> root = criteria.from(Tag.class);
+        criteria.where(builder.like(root.get("creador"),creador));
+
+        Query query = manager.createQuery(criteria);
+        //     query.setFirstResult(limite);
+        // query.setMaxResults(pagina);
+        return query.getResultList();
+
+    }
+
 }

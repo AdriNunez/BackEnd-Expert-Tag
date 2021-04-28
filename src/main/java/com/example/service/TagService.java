@@ -18,4 +18,6 @@ public interface TagService {
     public void deleteTag(Long id);
 
     public List<Tag> retrieveAllByNombre(String nombre, Integer limite, Integer pagina);
+
+    public List<Tag> retrieveTagsByExpert(String creador, Integer limite, Integer pagina);
 }
