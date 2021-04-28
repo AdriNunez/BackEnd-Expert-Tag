@@ -20,6 +20,7 @@ public class Tag {
 
     private String updated_at;
 
+    private String creador;
 
     @ManyToMany(mappedBy="etiquetas", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JsonIgnore
@@ -28,10 +29,11 @@ public class Tag {
     public Tag() {
     }
 
-    public Tag(String nombre, String created_at, String updated_at) {
+    public Tag(String nombre, String created_at, String updated_at, String creador) {
         this.nombre = nombre;
         this.created_at = created_at;
         this.updated_at = updated_at;
+        this.creador= creador;
     }
 
     public Long getId() {
@@ -56,6 +58,14 @@ public class Tag {
 
     public String getUpdated_at() {
         return updated_at;
+    }
+
+    public String getCreador() {
+        return creador;
+    }
+
+    public void setCreador(String creador) {
+        this.creador = creador;
     }
 
     public void setUpdated_at(String updated_at) {
