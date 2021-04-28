@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.model.Expert;
 import com.example.model.Tag;
 import com.example.service.TagService;
 import org.springframework.http.HttpStatus;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/API")
+@CrossOrigin(origins = "http://localhost:4200", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
 public class TagController {
 
     private TagService tagService;
@@ -20,9 +22,22 @@ public class TagController {
         this.tagService = tagService;
     }
 
+//    @GetMapping("/etiquetas")
+//    public List<Tag> retrieveAllTags() {
+//        return tagService.retrieveAllTags();
+//    }
+
     @GetMapping("/etiquetas")
-    public List<Tag> retrieveAllTags() {
-        return tagService.retrieveAllTags();
+    public List<Tag> retrieveByFilter(@RequestParam(name="limite", required=false, defaultValue = "5") Integer limite,
+                                         @RequestParam(name="pagina", required=false, defaultValue = "2") Integer pagina,
+                                         @RequestParam(name="nombre", required=false) String nombre){
+
+        if(nombre!= null) {
+            return tagService.retrieveAllByNombre(nombre, limite, pagina);
+        }
+        else{
+            return tagService.retrieveAllTags();
+        }
     }
 
     @GetMapping("/etiquetas/{id}")

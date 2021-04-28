@@ -59,7 +59,6 @@ public class ExpertDAOImpl implements ExpertDAO{
         CriteriaBuilder builder = manager.getCriteriaBuilder();
         CriteriaQuery<Expert> criteria = builder.createQuery(Expert.class);
         Root<Expert> root = criteria.from(Expert.class);
-      // criteria.select(root);
         criteria.where(builder.like(root.get("nombre"),"%"+nombre+"%"));
 
         Query query = manager.createQuery(criteria);
@@ -79,7 +78,7 @@ public class ExpertDAOImpl implements ExpertDAO{
         criteria.where(builder.equal(root.get("modalidad"),modal));
 
         Query query = manager.createQuery(criteria);
-        query.setFirstResult(limite);
+  //      query.setFirstResult(limite);
         query.setMaxResults(pagina);
         return query.getResultList();
 
@@ -90,7 +89,7 @@ public class ExpertDAOImpl implements ExpertDAO{
     public List<Expert> retrievellByEtiqueta(Long id, Integer limite, Integer pagina){
 
         Query query = manager.createQuery("From expert e INNER JOIN e.etiquetas where id =" + id);
-        query.setFirstResult(limite);
+ //       query.setFirstResult(limite);
         query.setMaxResults(pagina);
         return query.getResultList();
 
@@ -108,7 +107,7 @@ public class ExpertDAOImpl implements ExpertDAO{
         criteria.where(builder.equal(root.get("estado"), estado));
 
         Query query = manager.createQuery(criteria);
-        query.setFirstResult(limite);
+     //   query.setFirstResult(limite);
         query.setMaxResults(pagina);
         return query.getResultList();
 
@@ -123,7 +122,7 @@ public class ExpertDAOImpl implements ExpertDAO{
         criteria.select(root);
 
         Query query = manager.createQuery(criteria);
-        query.setFirstResult(limite);
+      //  query.setFirstResult(limite);
         query.setMaxResults(pagina);
         return query.getResultList();
 

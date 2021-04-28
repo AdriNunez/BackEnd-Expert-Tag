@@ -1,5 +1,6 @@
 package com.example.service;
 
+import com.example.model.Expert;
 import com.example.model.Tag;
 
 import java.util.List;
@@ -16,4 +17,5 @@ public interface TagService {
 
     public void deleteTag(Long id);
 
+    public List<Tag> retrieveAllByNombre(String nombre, Integer limite, Integer pagina);
 }

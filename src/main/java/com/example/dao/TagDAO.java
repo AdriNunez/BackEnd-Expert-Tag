@@ -1,5 +1,6 @@
 package com.example.dao;
 
+import com.example.model.Expert;
 import com.example.model.Tag;
 
 import java.util.List;
@@ -15,5 +16,7 @@ public interface TagDAO {
     public Tag updateTag (Tag tag);
 
     public void deleteTag(Long id);
+
+    public List<Tag> retrieveAllByNombre(String nombre, Integer limite, Integer pagina);
 
 }

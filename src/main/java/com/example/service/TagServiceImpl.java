@@ -1,6 +1,7 @@
 package com.example.service;
 
 import com.example.dao.TagDAO;
+import com.example.model.Expert;
 import com.example.model.Tag;
 import org.springframework.stereotype.Service;
 
@@ -28,4 +29,6 @@ public class TagServiceImpl implements TagService{
     @Override
     public void deleteTag (Long id) {this.tagDAO.deleteTag(id);}
 
+    @Override
+    public List<Tag> retrieveAllByNombre(String nombre, Integer limite, Integer pagina){return tagDAO.retrieveAllByNombre(nombre,limite,pagina);};
 }

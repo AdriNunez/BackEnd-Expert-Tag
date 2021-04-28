@@ -1,5 +1,6 @@
 package com.example.dao;
 
+import com.example.model.Expert;
 import com.example.model.Tag;
 import com.example.repository.TagRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,10 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -44,6 +49,19 @@ public class TagDAOImpl implements TagDAO {
     @Override
     public void deleteTag(Long id) {tagRepository.delete(manager.find(Tag.class,id)) ;}
 
+    @Override
+    public List<Tag> retrieveAllByNombre(String nombre, Integer limite, Integer pagina){
 
+        CriteriaBuilder builder = manager.getCriteriaBuilder();
+        CriteriaQuery<Tag> criteria = builder.createQuery(Tag.class);
+        Root<Tag> root = criteria.from(Tag.class);
+        criteria.where(builder.like(root.get("nombre"),"%"+nombre+"%"));
+
+        Query query = manager.createQuery(criteria);
+        //     query.setFirstResult(limite);
+       // query.setMaxResults(pagina);
+        return query.getResultList();
+
+    }
 
 }
