@@ -33,29 +33,30 @@ public class ExpertController {
     }
 
     @GetMapping("/expertos")
-    public List<Expert> retrieveByFilter( @RequestParam(name="limite", required=false, defaultValue = "5") Integer limite,
+    public List<Expert> retrieveByFilter( @RequestParam(name="limite", required=false ) Integer limite,
                                           @RequestParam(name="pagina", required=false, defaultValue = "0") Integer pagina,
                                           @RequestParam(name="nombre", required=false) String nombre,
                                           @RequestParam(name="etiqueta",required=false) Long etiqueta,
-                                          @RequestParam(name="modalidad",required=false) String modalidad,
+                                          @RequestParam(name="puntuacion",required=false) Integer puntuacion,
                                           @RequestParam(name="estado",required=false) String estado) {
 
-
-        if (nombre != null) {
-            return expertService.retrieveAllByNombre(nombre, limite, pagina);
-
-        } else if (etiqueta != null) {
-            return expertService.retrievellByEtiqueta(etiqueta, limite, pagina);
-
-        }else if(modalidad != null) {
-            return expertService.retrieveAllByModalidad(modalidad, limite, pagina);
-
-        }else if (estado != null) {
-            return expertService.retrieveAllByEstado(estado, limite, pagina);
-        }
-        else{
-            return expertService.retrieveAllExperts();
-        }
+//
+//        if (nombre != null) {
+//            return expertService.retrieveAllByNombre(nombre, limite, pagina);
+//
+//        } else if (etiqueta != null) {
+//            return expertService.retrievellByEtiqueta(etiqueta, limite, pagina);
+//
+//        }else if(modalidad != null) {
+//            return expertService.retrieveAllByModalidad(modalidad, limite, pagina);
+//
+//        }else if (estado != null) {
+//            return expertService.retrieveAllByEstado(estado, limite, pagina);
+//        }
+//        else{
+              System.out.println(nombre + estado + puntuacion + etiqueta);
+            return expertService.retrieveAllExperts(nombre,estado,puntuacion,etiqueta,limite,pagina);
+//        }
     }
 
 

@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ExpertService {
 
-   public List<Expert> retrieveAllExperts();
+   public List<Expert> retrieveAllExperts(String nombre, String estado,Integer puntuacion,Long etiqueta,Integer limite, Integer pagina);
 
     public Expert retrieveExpertByID(Long id);
 

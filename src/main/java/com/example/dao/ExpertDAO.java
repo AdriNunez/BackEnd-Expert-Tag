@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ExpertDAO {
 
-   public List<Expert> retrieveAllExperts();
+//   public List<Expert> retrieveAllExperts();
 
     public Expert retrieveExpertByID(Long id);
 
@@ -24,8 +24,9 @@ public interface ExpertDAO {
 
     public List<Expert> retrieveAllByEstado(String estado, Integer limite, Integer pagina);
 
-    public List<Expert> retrieveAllExpertsLimite(Integer limite, Integer pagina);
+    public List<Expert> retrieveAllExperts(String nombre, String estado,Integer puntuacion,Long etiqueta,Integer limite, Integer pagina);
 
+  public List<Expert> retrieveAllExpertsLimite(Integer limite, Integer pagina);
 //      if (nombre != null) {
 //        return expertService.retrieveAllByNombre(nombre, limite, pagina);
 //

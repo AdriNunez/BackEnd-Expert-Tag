@@ -10,9 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -33,8 +31,39 @@ public class ExpertDAOImpl implements ExpertDAO{
     private TagDAO tagDAO;
 
    @Override
-   public List<Expert> retrieveAllExperts(){
-       return manager.createQuery("From Expert",Expert.class).getResultList();
+   public List<Expert> retrieveAllExperts(String nombre, String estado,Integer puntuacion,Long etiqueta,Integer limite, Integer pagina){
+
+
+       CriteriaBuilder builder = manager.getCriteriaBuilder();
+       CriteriaQuery<Expert> criteria = builder.createQuery(Expert.class);
+       Root<Expert> root = criteria.from(Expert.class);
+
+       List<Predicate> predicates = new ArrayList<>();
+
+       if (nombre != null) {
+           predicates.add(builder.like(root.get("nombre"),"%"+nombre+"%"));
+
+       }
+       if (etiqueta != null) {
+           Join<Expert, Tag> rootTags = root.join("tag");
+           predicates.add(builder.equal(rootTags.get("id"), etiqueta));
+
+       }
+       if(puntuacion != null) {
+           predicates.add(builder.equal(root.get("puntuacion"),puntuacion));
+
+       }
+       if (estado != null) {
+           predicates.add(builder.equal(root.get("estado"), estado));
+       }
+
+           criteria.distinct(true).select(root).where(builder.and(predicates.toArray(new Predicate[0])));
+       TypedQuery<Expert> expertsQuery = manager.createQuery(criteria);
+       if(limite!=null && pagina!=null){
+           expertsQuery.setFirstResult(pagina);
+           expertsQuery.setMaxResults(limite);
+       }
+       return manager.createQuery(criteria).getResultList();
     }
 
     @Override
@@ -57,6 +86,7 @@ public class ExpertDAOImpl implements ExpertDAO{
     @Override
     public void deleteExpert(Long id) {expertRepository.delete(manager.find(Expert.class,id)) ;}
 
+
     @Override
     public List<Expert> retrieveAllByNombre(String nombre, Integer limite, Integer pagina){
 
@@ -65,10 +95,10 @@ public class ExpertDAOImpl implements ExpertDAO{
         Root<Expert> root = criteria.from(Expert.class);
         criteria.where(builder.like(root.get("nombre"),"%"+nombre+"%"));
 
-        TypedQuery<Expert> expertQuery = manager.createQuery(criteria);
-        expertQuery.setFirstResult(limite);
-        expertQuery.setMaxResults(pagina);
-        return expertQuery.getResultList();
+        Query query = manager.createQuery(criteria);
+  //     query.setFirstResult(limite);
+  //     query.setMaxResults(pagina);
+        return query.getResultList();
 
     }
 
