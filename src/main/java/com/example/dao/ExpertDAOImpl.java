@@ -13,6 +13,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -42,12 +43,14 @@ public class ExpertDAOImpl implements ExpertDAO{
 
     @Override
     public Expert createExpert(Expert expert){
-        return expertRepository.save(expert);
+        expert.setCreated_at(LocalDateTime.now());
+       return expertRepository.save(expert);
     }
 
     @Override
     public Expert updateExpert(Expert expert,Long id){
-        return expertRepository.save(expert);
+        expert.setUpdated_at(LocalDateTime.now());
+       return expertRepository.save(expert);
     }
 
     @Override

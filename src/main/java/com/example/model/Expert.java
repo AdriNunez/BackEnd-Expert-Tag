@@ -5,6 +5,7 @@ import org.springframework.data.annotation.CreatedDate;
 
 import javax.annotation.processing.Generated;
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -19,10 +20,9 @@ public class Expert {
     @Column(name = "nombre")
     private String nombre;
 
-    @CreatedDate
-    private Date created_at;
+    private LocalDateTime created_at;
 
-    private Date updated_at;
+    private LocalDateTime updated_at;
 
     private String estado_motivo;
 
@@ -75,7 +75,7 @@ public class Expert {
     public Expert() {
     }
 
-    public Expert(String nombre, Date created_at, Date updated_at, String estado_motivo, String disponibilidad, String modalidad, String autonomo,
+    public Expert(String nombre, LocalDateTime created_at, LocalDateTime updated_at, String estado_motivo, String disponibilidad, String modalidad, String autonomo,
                   Long contacto_telefono, String contacto_email, String contacto_ciudad, Double condiciones_porcentaje, Double condiciones_precio_hora,
                   Integer puntuacion, String nif, String credenciales_correo, String credenciales_correo_password, String credenciales_zoom_password,
                   String fichero_foto, String fichero_cv, String observaciones, String origen, String estado) {
@@ -116,19 +116,19 @@ public class Expert {
         this.nombre = nombre;
     }
 
-    public Date getCreated_at() {
+    public LocalDateTime getCreated_at() {
         return created_at;
     }
 
-    public void setCreated_at(Date created_at) {
+    public void setCreated_at(LocalDateTime created_at) {
         this.created_at = created_at;
     }
 
-    public Date getUpdated_at() {
+    public LocalDateTime getUpdated_at() {
         return updated_at;
     }
 
-    public void setUpdated_at(Date updated_at) {
+    public void setUpdated_at(LocalDateTime updated_at) {
         this.updated_at = updated_at;
     }
 

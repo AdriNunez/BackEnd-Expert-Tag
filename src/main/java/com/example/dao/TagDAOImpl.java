@@ -13,6 +13,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
@@ -38,6 +39,7 @@ public class TagDAOImpl implements TagDAO {
 
     @Override
     public Tag createTag(Tag tag){
+        tag.setCreated_at(LocalDateTime.now());
         return tagRepository.save(tag);
     }
 
