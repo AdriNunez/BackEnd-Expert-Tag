@@ -34,7 +34,7 @@ public class ExpertController {
 
     @GetMapping("/expertos")
     public List<Expert> retrieveByFilter( @RequestParam(name="limite", required=false, defaultValue = "5") Integer limite,
-                                          @RequestParam(name="pagina", required=false, defaultValue = "2") Integer pagina,
+                                          @RequestParam(name="pagina", required=false, defaultValue = "0") Integer pagina,
                                           @RequestParam(name="nombre", required=false) String nombre,
                                           @RequestParam(name="etiqueta",required=false) Long etiqueta,
                                           @RequestParam(name="modalidad",required=false) String modalidad,

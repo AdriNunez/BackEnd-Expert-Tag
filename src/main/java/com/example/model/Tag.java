@@ -25,7 +25,7 @@ public class Tag {
 
     private String creador;
 
-    @ManyToMany(mappedBy="etiquetas", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy="etiquetas", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Expert> expertos = new ArrayList<>();
 

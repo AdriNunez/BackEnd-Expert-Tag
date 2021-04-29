@@ -63,12 +63,11 @@ public class Expert {
     @Column(name ="estado")
     private String estado;
 
-    @ManyToMany()
-    @JsonIgnore
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "expertos_etiquetas",
-            joinColumns = {@JoinColumn(name="tag_id", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name="expert_id", referencedColumnName = "id")}
+            joinColumns = {@JoinColumn(name="expert_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name="tag_id", referencedColumnName = "id")}
     )
     private List<Tag> etiquetas = new ArrayList<>();
 
@@ -102,6 +101,14 @@ public class Expert {
         this.observaciones = observaciones;
         this.origen = origen;
         this.estado = estado;
+    }
+
+    public List<Tag> getEtiquetas() {
+        return etiquetas;
+    }
+
+    public void setEtiquetas(List<Tag> etiquetas) {
+        this.etiquetas = etiquetas;
     }
 
     public Long getId() {

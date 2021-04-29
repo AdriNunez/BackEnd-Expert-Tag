@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -64,10 +65,10 @@ public class ExpertDAOImpl implements ExpertDAO{
         Root<Expert> root = criteria.from(Expert.class);
         criteria.where(builder.like(root.get("nombre"),"%"+nombre+"%"));
 
-        Query query = manager.createQuery(criteria);
-  //     query.setFirstResult(limite);
-       query.setMaxResults(pagina);
-        return query.getResultList();
+        TypedQuery<Expert> expertQuery = manager.createQuery(criteria);
+        expertQuery.setFirstResult(limite);
+        expertQuery.setMaxResults(pagina);
+        return expertQuery.getResultList();
 
     }
 
