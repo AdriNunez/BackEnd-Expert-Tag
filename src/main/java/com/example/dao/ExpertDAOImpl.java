@@ -31,7 +31,7 @@ public class ExpertDAOImpl implements ExpertDAO{
     private TagDAO tagDAO;
 
    @Override
-   public List<Expert> retrieveAllExperts(String nombre, String estado,Integer puntuacion,Long etiqueta,Integer limite, Integer pagina){
+   public List<Expert> retrieveAllExperts(String nombre, String estado,Integer puntuacion,String etiqueta,Integer limite, Integer pagina){
 
 
        CriteriaBuilder builder = manager.getCriteriaBuilder();
@@ -45,7 +45,7 @@ public class ExpertDAOImpl implements ExpertDAO{
 
        }
        if (etiqueta != null) {
-           Join<Expert, Tag> rootTags = root.join("tag");
+           Join<Expert, Tag> rootTags = root.join("etiquetas");
            predicates.add(builder.equal(rootTags.get("id"), etiqueta));
 
        }
@@ -63,7 +63,7 @@ public class ExpertDAOImpl implements ExpertDAO{
            expertsQuery.setFirstResult(pagina);
            expertsQuery.setMaxResults(limite);
        }
-       return manager.createQuery(criteria).getResultList();
+       return expertsQuery.getResultList();
     }
 
     @Override

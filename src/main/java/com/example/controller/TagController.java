@@ -33,14 +33,14 @@ public class TagController {
                                          @RequestParam(name="nombre", required=false) String nombre ,
                                         @RequestParam(name="creador",required =false) String creador){
 
-        if(nombre!= null) {
-            return tagService.retrieveAllByNombre(nombre, limite, pagina);
-        } else if(creador != null){
-            return tagService.retrieveTagsByExpert(creador,limite,pagina);
-        }
-        else{
-            return tagService.retrieveAllTags();
-        }
+//        if(nombre!= null) {
+//            return tagService.retrieveAllByNombre(nombre, limite, pagina);
+//        } else if(creador != null){
+//            return tagService.retrieveTagsByExpert(creador,limite,pagina);
+//        }
+//        else{
+            return tagService.retrieveAllTags(limite,pagina,nombre,creador);
+//        }
     }
 
     @GetMapping("/etiquetas/{id}")

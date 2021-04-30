@@ -9,11 +9,11 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.*;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -28,8 +28,28 @@ public class TagDAOImpl implements TagDAO {
     private TagRepository tagRepository;
 
     @Override
-    public List<Tag> retrieveAllTags(){
-        return manager.createQuery("From Tag",Tag.class).getResultList();
+    public List<Tag> retrieveAllTags(Integer limite,Integer pagina,String nombre,String creador){
+        CriteriaBuilder builder = manager.getCriteriaBuilder();
+        CriteriaQuery<Tag> criteria = builder.createQuery(Tag.class);
+        Root<Tag> root = criteria.from(Tag.class);
+        List<Predicate> predicates = new ArrayList<>();
+
+        if (nombre != null) {
+            predicates.add(builder.like(root.get("nombre"),nombre+"%"));
+
+        }
+        if (creador != null) {
+            predicates.add(builder.like(root.get("creador"),creador));
+
+        }
+        criteria.distinct(true).select(root).where(builder.and(predicates.toArray(new Predicate[0])));
+        TypedQuery<Tag> tagsQuery = manager.createQuery(criteria);
+        if(limite!=null && pagina!=null){
+            tagsQuery.setFirstResult(pagina);
+            tagsQuery.setMaxResults(limite);
+        }
+        return tagsQuery.getResultList();
+//        return manager.createQuery("From Tag",Tag.class).getResultList();
     }
 
     @Override
@@ -49,7 +69,13 @@ public class TagDAOImpl implements TagDAO {
     }
 
     @Override
-    public void deleteTag(Long id) {tagRepository.delete(manager.find(Tag.class,id)) ;}
+    public void deleteTag(Long id) {
+
+        Query queryNative = manager.createNativeQuery("delete from expertos_etiquetas where tag_id = "+ id);
+        queryNative.executeUpdate();
+        tagRepository.delete(manager.find(Tag.class,id)) ;
+
+    }
 
     @Override
     public List<Tag> retrieveAllByNombre(String nombre, Integer limite, Integer pagina){

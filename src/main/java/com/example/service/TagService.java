@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface TagService {
 
-    public List<Tag> retrieveAllTags();
+    public List<Tag> retrieveAllTags(Integer limite, Integer pagina, String nombre, String creador);
 
     public Tag retrieveTagById(Long id);
 

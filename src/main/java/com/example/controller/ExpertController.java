@@ -34,9 +34,9 @@ public class ExpertController {
 
     @GetMapping("/expertos")
     public List<Expert> retrieveByFilter( @RequestParam(name="limite", required=false ) Integer limite,
-                                          @RequestParam(name="pagina", required=false, defaultValue = "0") Integer pagina,
+                                          @RequestParam(name="pagina", required=false) Integer pagina,
                                           @RequestParam(name="nombre", required=false) String nombre,
-                                          @RequestParam(name="etiqueta",required=false) Long etiqueta,
+                                          @RequestParam(name="etiqueta",required=false) String etiqueta,
                                           @RequestParam(name="puntuacion",required=false) Integer puntuacion,
                                           @RequestParam(name="estado",required=false) String estado) {
 
@@ -54,7 +54,7 @@ public class ExpertController {
 //            return expertService.retrieveAllByEstado(estado, limite, pagina);
 //        }
 //        else{
-              System.out.println(nombre + estado + puntuacion + etiqueta);
+
             return expertService.retrieveAllExperts(nombre,estado,puntuacion,etiqueta,limite,pagina);
 //        }
     }

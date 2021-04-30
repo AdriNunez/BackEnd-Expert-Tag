@@ -15,7 +15,7 @@ public class TagServiceImpl implements TagService{
     public TagServiceImpl(TagDAO tagDAO) { this.tagDAO = tagDAO;}
 
     @Override
-    public List<Tag> retrieveAllTags() { return this.tagDAO.retrieveAllTags();}
+    public List<Tag> retrieveAllTags(Integer limite,Integer pagina,String nombre,String creador) { return this.tagDAO.retrieveAllTags(limite,pagina,nombre,creador);}
 
     @Override
     public Tag retrieveTagById(Long id) {return this.tagDAO.retrieveTagById(id);}

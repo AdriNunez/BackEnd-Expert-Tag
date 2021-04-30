@@ -15,7 +15,7 @@ public class ExpertServiceImpl implements ExpertService{
     public ExpertServiceImpl(ExpertDAO expertDAO){this.expertDAO = expertDAO;};
 
     @Override
-    public List<Expert> retrieveAllExperts(String nombre, String estado,Integer puntuacion,Long etiqueta,Integer limite, Integer pagina){ return this.expertDAO.retrieveAllExperts(nombre, estado, puntuacion, etiqueta,limite,pagina);}
+    public List<Expert> retrieveAllExperts(String nombre, String estado,Integer puntuacion,String etiqueta,Integer limite, Integer pagina){ return this.expertDAO.retrieveAllExperts(nombre, estado, puntuacion, etiqueta,limite,pagina);}
 
     @Override
     public Expert retrieveExpertByID(Long id) { return this.expertDAO.retrieveExpertByID(id);}

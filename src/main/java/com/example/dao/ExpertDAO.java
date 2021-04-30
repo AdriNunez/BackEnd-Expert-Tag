@@ -24,7 +24,7 @@ public interface ExpertDAO {
 
     public List<Expert> retrieveAllByEstado(String estado, Integer limite, Integer pagina);
 
-    public List<Expert> retrieveAllExperts(String nombre, String estado,Integer puntuacion,Long etiqueta,Integer limite, Integer pagina);
+    public List<Expert> retrieveAllExperts(String nombre, String estado,Integer puntuacion,String etiqueta,Integer limite, Integer pagina);
 
   public List<Expert> retrieveAllExpertsLimite(Integer limite, Integer pagina);
 //      if (nombre != null) {
