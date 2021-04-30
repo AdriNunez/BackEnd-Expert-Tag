@@ -28,7 +28,7 @@ public class TagController {
 //    }
 
     @GetMapping("/etiquetas")
-    public List<Tag> retrieveByFilter(@RequestParam(name="limite", required=false, defaultValue = "9") Integer limite,
+    public List<Tag> retrieveByFilter(@RequestParam(name="limite", required=false) Integer limite,
                                          @RequestParam(name="pagina", required=false, defaultValue = "0") Integer pagina,
                                          @RequestParam(name="nombre", required=false) String nombre ,
                                         @RequestParam(name="creador",required =false) String creador){
